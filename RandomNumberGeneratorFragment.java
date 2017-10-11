@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +67,7 @@ public class RandomNumberGeneratorFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        btnGenerate.setOnClickListener(new ClickButton());
+
     }
 
     @Override
@@ -79,8 +80,27 @@ public class RandomNumberGeneratorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_random_number_generator, container, false);
+        View view = (RelativeLayout) inflater.inflate(R.layout.fragment_random_number_generator, container, false);
         bindView(view);
+        btnGenerate = (Button) view.findViewById(R.id.buttonGen);
+        btnGenerate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                int min = Integer.parseInt(start.getText().toString());
+                int max = Integer.parseInt(end.getText().toString());
+                Random random = new Random();
+
+
+                if(min>max){
+                    Toast toast = new Toast(getActivity().getApplicationContext());
+                    Toast.makeText(getActivity().getApplicationContext(), "The minimum range value you entered is larger then the maximum range value!", Toast.LENGTH_LONG).show();
+                }
+                double randomMultiplier = random.nextDouble();
+                long range = (long)max - (long)min + 1;
+                int randomNumber = (int)((long)(range * randomMultiplier) + min);
+                randNum.setText(Integer.toString(randomNumber));
+            }
+        });
         //Initiated Broadcast receiver
         return view;
 
@@ -89,11 +109,11 @@ public class RandomNumberGeneratorFragment extends Fragment {
     private void bindView(View view){
             start = (EditText) view.findViewById(R.id.start);
             end = (EditText) view.findViewById(R.id.end);
-            btnGenerate = (Button) view.findViewById(R.id.buttonGen);
+
             randNum = (TextView) view.findViewById(R.id.randomNumber);
     }
 
-    private class ClickButton implements Button.OnClickListener{
+    /*private class ClickButton implements Button.OnClickListener{
         public void onClick(View v){
             int min = Integer.parseInt(start.getText().toString());
             int max = Integer.parseInt(end.getText().toString());
@@ -108,7 +128,7 @@ public class RandomNumberGeneratorFragment extends Fragment {
             int randomNumber = (int)((long)(range * randomMultiplier) + min);
             randNum.setText(randomNumber);
         }
-    }
+    }*/
 
 
 
