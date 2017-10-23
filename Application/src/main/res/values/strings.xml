@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RandomNumbersApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="generator">Generator</string>
+    <string name="share">Share</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcomeText">Welcome to the random number generator app. Click on the \'Generator\' button below to continue.</string>
+    <string name="welcomeText1">Welcome to the random number generator app.\\nClick on the \'Generator\' button below to continue.</string>
+    <string name="welcomeText2">Welcome to the random number generator app.</string>
+</resources>
